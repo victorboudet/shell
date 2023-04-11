@@ -85,6 +85,8 @@ void my_strcpy(char *dest, const char *src);
 // void print_env(env_t env);
 
 // functions
+int double_array_len(char ***array);
+char **malloc_2d(int x, int y);
 int my_env(char **arg);
 int my_exit(char **arg);
 int my_cd(char **arg);
