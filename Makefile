@@ -33,9 +33,12 @@ SRC_UTILS = $(UTILS)/my_puts.c \
 			init_env.c \
 			$(UTILS)/my_revstr.c \
 			$(UTILS)/new_arg.c \
+			$(UTILS)/my_double_array.c \
 
 SRC = main.c \
-	  pipe.c \
+	  redirect.c \
+	  format_arg.c \
+	  execute.c \
 	  $(SRC_FUNC) \
 	  $(SRC_UTILS) \
 	  $(SRC_HANDLER) \
