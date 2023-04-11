@@ -34,15 +34,15 @@ int last_exec(char **arg)
 int check_sep(char *str)
 {
     if (*str == '|')
-        return 1;
+        return PIPE;
     if (*str == '>' && *(str + 1) == '>')
-        return 2;
-    if (*str == '<' && *(str + 1) != '<')
-        return 3;
+        return DOUBLE_EXIT_REDIR;
+    if (*str == '<' && *(str + 1) == '<')
+        return DOUBLE_INPUT_REDIR;
     if (*str == '>')
-        return 4;
+        return EXIT_REDIR;
     if (*str == '<')
-        return 5;
+        return INPUT_REDIR;
     return 0;
 }
 
