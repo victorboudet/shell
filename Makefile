@@ -41,7 +41,7 @@ SRC = main.c \
 	  $(SRC_HANDLER) \
 
 OBJ = $(SRC:.c=.o)
-TARGET = mysh
+TARGET = 42sh
 
 $(TARGET): $(OBJ)
 	$(CC) $^ -o $@ $(CPPFLAGS)
