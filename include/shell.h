@@ -22,6 +22,12 @@
     #include <string.h>
     #include <errno.h>
 
+    #define PIPE 1
+    #define DOUBLE_EXIT_REDIR 2
+    #define DOUBLE_INPUT_REDIR 3
+    #define EXIT_REDIR 4
+    #define INPUT_REDIR 5
+
 // typedef struct list_s list_t;
 // struct list_s {
 //     char *name;
