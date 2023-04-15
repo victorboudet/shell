@@ -44,7 +44,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJ)
 	make -C lib/my
-	$(CC) $^ -L./lib/my -lmy -o $@ $(CPPFLAGS)
+	$(CC) $^ -o $@ $(CPPFLAGS)
 
 clean:
 	make clean -C lib/my
