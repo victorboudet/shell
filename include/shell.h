@@ -21,6 +21,7 @@
     #include <sys/stat.h>
     #include <string.h>
     #include <errno.h>
+    #include "my.h"
 
     #define PIPE 1
     #define DOUBLE_EXIT_REDIR 2
@@ -68,25 +69,14 @@ typedef struct format_s {
 //      my_puts.c
 int last_exec(char **arg);
 int check_line(char *line, int ret);
-void my_putchar(const char c);
-void my_putstr(const char *str);
-void my_putnbr(int nb);
 //      other
-int my_strncomp(const char *str1, const char *str2, int n);
-int my_str_comp(const char *str1, const char *str2);
-int my_strlen(const char *str);
 char **my_str_to_word_array(char *str);
-char *my_strcat(char *first, char *second);
-int array_len(char **array);
-void my_strcpy(char *dest, const char *src);
 
 // env
 // env_t *init_env(char **env);
 // void print_env(env_t env);
 
 // functions
-int double_array_len(char ***array);
-char **malloc_2d(int x, int y);
 int my_env(char **arg);
 int my_exit(char **arg);
 int my_cd(char **arg);

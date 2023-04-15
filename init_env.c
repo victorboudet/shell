@@ -44,7 +44,7 @@ void add_env(char *name, char *value)
     char **array = get_env();
     int i = 0;
     int enter = 0;
-    char **new = malloc(sizeof(char *) * (array_len(array) + 3));
+    char **new = malloc(sizeof(char *) * (my_2darray_len(array) + 3));
 
     for (i = 0; array[i] != NULL; i++) {
         if (my_strncomp(array[i], name, my_strlen(name))) {

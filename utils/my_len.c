@@ -11,23 +11,6 @@ bool guil(parse_t *p);
 bool check(parse_t *p);
 parse_t *init_p(char *str, char **dest);
 
-int my_strlen(const char *str)
-{
-    int i = 0;
-    if (str == NULL)
-        return 0;
-    for (i = 0; str[i]; i++);
-    return i;
-}
-
-int array_len(char **array)
-{
-    int i = 0;
-
-    for (; array[i] != NULL; i++);
-    return i;
-}
-
 char **loop(char *str, char **dest)
 {
     parse_t *p = init_p(str, dest);
@@ -48,17 +31,6 @@ char **loop(char *str, char **dest)
         p->dest[p->i] = NULL;
     p->dest[p->i + 1] = NULL;
     return p->dest;
-}
-
-char **malloc_2d(int x, int y)
-{
-    char **dest = malloc(x * sizeof(char *));
-    for (int i = 0; i < x - 1; i++) {
-        dest[i] = malloc(y);
-        for (int j = 0; j < y; j++)
-            dest[i][j] = '\0';
-    }
-    return dest;
 }
 
 void double_close(int fd1, int fd2)

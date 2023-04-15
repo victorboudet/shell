@@ -76,7 +76,7 @@ static int exec_command(char *line, int ret)
     }
     pid_t pid = fork();
     if (pid == 0) {
-        generic_pipe(f->dest, double_array_len(f->dest), f->tab);
+        generic_pipe(f->dest, my_3darray_len(f->dest), f->tab);
     } else {
         wait(&reto);
     }

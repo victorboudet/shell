@@ -5,7 +5,7 @@
 ** my_putnbr
 */
 
-#include "shell.h"
+#include "my.h"
 
 void my_putnbr(int nb)
 {

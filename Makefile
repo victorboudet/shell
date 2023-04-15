@@ -10,7 +10,7 @@ UTILS = utils
 HANDLER = handlers
 
 CFLAGS = -W -Wall -Wextra -Werror
-CPPFLAGS = -I./include
+CPPFLAGS = -I./include -L./lib/my -lmy
 
 SRC_FUNC = $(FUNC)/my_env.c \
 		   $(FUNC)/my_exit.c \
@@ -23,17 +23,11 @@ SRC_HANDLER = $(HANDLER)/sigint.c \
 			  $(HANDLER)/sigbase.c \
 			  $(HANDLER)/sigsegv.c \
 
-SRC_UTILS = $(UTILS)/my_puts.c \
-			$(UTILS)/my_str_comp.c \
-			$(UTILS)/my_len.c \
+SRC_UTILS = $(UTILS)/my_len.c \
 			$(UTILS)/get_arg.c \
-			$(UTILS)/my_strcat.c \
-			$(UTILS)/my_putnbr.c \
 			$(UTILS)/str_get.c \
 			init_env.c \
-			$(UTILS)/my_revstr.c \
 			$(UTILS)/new_arg.c \
-			$(UTILS)/my_double_array.c \
 
 SRC = main.c \
 	  redirect.c \
@@ -46,16 +40,18 @@ SRC = main.c \
 OBJ = $(SRC:.c=.o)
 TARGET = 42sh
 
-$(TARGET): $(OBJ)
-	$(CC) $^ -o $@ $(CPPFLAGS)
-
 all: $(TARGET)
-	make clean
+
+$(TARGET): $(OBJ)
+	make -C lib/my
+	$(CC) $^ -L./lib/my -lmy -o $@ $(CPPFLAGS)
 
 clean:
+	make clean -C lib/my
 	$(RM) $(OBJ)
 
 fclean: clean
+	make fclean -C lib/my
 	$(RM) $(TARGET)
 
 re: fclean all

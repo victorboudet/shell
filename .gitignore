@@ -1,0 +1,5 @@
+*.o
+.idea
+.vscode
+libmy.a
+42sh

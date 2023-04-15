@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2023
-** B-PSU-200-MPL-2-1-minishell1-victor.boudet
+** B-PSU-200-MPL-2-1-42sh-kylian.labrador
 ** File description:
 ** my_strcat
 */
 
-#include "shell.h"
+#include "my.h"
 
 char *my_strcat(char *first, char *second)
 {
@@ -22,14 +22,4 @@ char *my_strcat(char *first, char *second)
     }
     new[i] = '\0';
     return new;
-}
-
-void my_strcpy(char *dest, const char *src)
-{
-    int i = 0;
-
-    for (; src[i] != '\0'; i++) {
-        dest[i] = src[i];
-    }
-    dest[i] = '\0';
 }

@@ -5,11 +5,12 @@
 ** my_double_array
 */
 
-#include "shell.h"
+#include "my.h"
 
-int double_array_len(char ***array)
+ssize_t my_2darray_len(char **array)
 {
-    int i = 0;
+    ssize_t i = 0;
+
     for (i = 0; array[i] != NULL; i++);
     return i;
 }
