@@ -28,10 +28,10 @@ SRC_HANDLER = $(HANDLER)/sigint.c \
 SRC_UTILS = $(UTILS)/my_len.c \
 			$(UTILS)/get_arg.c \
 			$(UTILS)/str_get.c \
-			init_env.c \
 			$(UTILS)/new_arg.c \
 
 SRC = main.c \
+	  env.c \
 	  redirect.c \
 	  format_arg.c \
 	  execute.c \
