@@ -3,3 +3,4 @@
 .vscode
 libmy.a
 42sh
+unit_tests*

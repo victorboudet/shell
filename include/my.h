@@ -32,7 +32,7 @@ char **malloc_2d_char(ssize_t x, ssize_t y);
 char *my_revstr(char *str);
 char *my_strcat(char *first, char *second);
 int my_str_comp(const char *str1, const char *str2);
-void my_strcpy(char *dest, const char *src);
+bool my_strcpy(char *dest, const char *src);
 int my_strncomp(const char *str1, const char *str2, int n);
 
 #endif /* !MY_H_ */

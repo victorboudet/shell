@@ -12,6 +12,8 @@ HANDLER = handlers
 CFLAGS = -W -Wall -Wextra -Werror
 CPPFLAGS = -I./include -L./lib/my -lmy
 
+SRC_CRITERION = $(shell find test -name "*.c")
+
 SRC_FUNC = $(FUNC)/my_env.c \
 		   $(FUNC)/my_exit.c \
 		   $(FUNC)/my_cd.c \
@@ -46,7 +48,16 @@ $(TARGET): $(OBJ)
 	make -C lib/my
 	$(CC) $^ -o $@ $(CPPFLAGS)
 
-clean:
+run_tests: re
+	$(CC) -o unit_tests $(SRC_CRITERION) $(CPPFLAGS) -lcriterion --coverage
+	./unit_tests
+
+clean_tests:
+	$(RM) unit_tests
+	$(RM) *.gcda
+	$(RM) *.gcno
+
+clean: clean_tests
 	make clean -C lib/my
 	$(RM) $(OBJ)
 

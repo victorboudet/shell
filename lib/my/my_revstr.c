@@ -18,6 +18,5 @@ char *my_revstr(char *str)
     dest = malloc(sizeof(char) * (len + 1));
     for (int i = 0; i < len; i++) dest[i] = str[len - i - 1];
     dest[len] = '\0';
-    free(str);
     return dest;
 }
