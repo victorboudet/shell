@@ -10,6 +10,26 @@
 char *get_varenv(char *name);
 char *crop_b(char *str, int nb);
 
+const error_t err[] = {
+    {139, "Segmentation fault (core dumped)"},
+    {136, "Floating exception (core dumped)"},
+    {138, "Bus error (core dumped)"},
+    {134, "Abort (core dumped)"},
+    {132, "Illegal instruction (core dumped)"},
+    {0, NULL}
+};
+
+void print_coredump(int ret)
+{
+    for (int i = 0; err[i].msg != NULL; i++) {
+        if (ret == err[i].code) {
+            my_putstr(err[i].msg);
+            my_putchar('\n');
+            return;
+        }
+    }
+}
+
 char *test(char *arg)
 {
     (void) arg;

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2023
-** B-PSU-200-MPL-2-1-42sh-kylian.labrador
+** B-PSU-200-MPL-2-1-minishell2-victor.boudet
 ** File description:
-** redirect
+** pipe
 */
 
 #include "shell.h"
@@ -18,18 +18,17 @@ void double_close(int fd1, int fd2);
 format_t *format(char **str);
 char **get_arg(char *str, int a);
 
-static void action(int nb, char **commands[], int i)
+void action(int nb, char **commands[], int i)
 {
     int out_fd;
-
     switch (nb) {
-        case EXIT_REDIR:
+        case 2:
             out_fd = open(commands[i + 1][0], O_WRONLY | O_CREAT | O_APPEND,
                 0644);
             dup2(out_fd, STDOUT_FILENO);
             close(out_fd);
             break;
-        case DOUBLE_EXIT_REDIR:
+        case 4:
             out_fd = open(commands[i + 1][0], O_WRONLY | O_CREAT | O_TRUNC,
                 0644);
             dup2(out_fd, STDOUT_FILENO);
@@ -38,11 +37,10 @@ static void action(int nb, char **commands[], int i)
     }
 }
 
-static void generic_pipe(char **commands[], int num_commands, int *tab)
+void generic_pipe(char **commands[], int num_commands, int *tab)
 {
     int fd[2], in_fd = dup(STDIN_FILENO);
     pid_t pid;
-
     for (int i = 0; i < num_commands - 1; i++) {
         pipe(fd);
         pid = fork();
@@ -62,11 +60,17 @@ static void generic_pipe(char **commands[], int num_commands, int *tab)
     exit(last_exec(commands[num_commands - 1]));
 }
 
+int double_array_len(char ***array)
+{
+    int i = 0;
+    for (i = 0; array[i] != NULL; i++);
+    return i;
+}
+
 static int exec_command(char *line, int ret)
 {
     char **arg = get_arg(line, ret);
     int reto = 0;
-
     if (arg[0] == NULL) {
         return 0;
     }
@@ -76,7 +80,7 @@ static int exec_command(char *line, int ret)
     }
     pid_t pid = fork();
     if (pid == 0) {
-        generic_pipe(f->dest, my_3darray_len(f->dest), f->tab);
+        generic_pipe(f->dest, double_array_len(f->dest), f->tab);
     } else {
         wait(&reto);
     }

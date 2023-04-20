@@ -15,7 +15,7 @@ char **malloc_2d(int x, int y);
 char **my_str_to_word_array(char *str)
 {
     int len = my_strlen(str) + 1;
-    char **dest = malloc_2d_char(len, len);
+    char **dest = malloc_2d(len, len);
     return loop(str, dest);
 }
 

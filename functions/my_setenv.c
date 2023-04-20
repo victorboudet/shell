@@ -48,7 +48,7 @@ int is_alphanum(char *str)
 
 int my_setenv(char **arg)
 {
-    int alen = my_2darray_len(arg);
+    int alen = array_len(arg);
     char *new = "";
     if (alen < 2) {
         print_env();

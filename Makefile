@@ -10,9 +10,7 @@ UTILS = utils
 HANDLER = handlers
 
 CFLAGS = -W -Wall -Wextra -Werror
-CPPFLAGS = -I./include -L./lib/my -lmy
-
-SRC_CRITERION = $(shell find test -name "*.c")
+CPPFLAGS = -I./include
 
 SRC_FUNC = $(FUNC)/my_env.c \
 		   $(FUNC)/my_exit.c \
@@ -25,16 +23,19 @@ SRC_HANDLER = $(HANDLER)/sigint.c \
 			  $(HANDLER)/sigbase.c \
 			  $(HANDLER)/sigsegv.c \
 
-SRC_UTILS = $(UTILS)/my_len.c \
+SRC_UTILS = $(UTILS)/my_puts.c \
+			$(UTILS)/my_str_comp.c \
+			$(UTILS)/my_len.c \
 			$(UTILS)/get_arg.c \
+			$(UTILS)/my_strcat.c \
+			$(UTILS)/my_putnbr.c \
 			$(UTILS)/str_get.c \
+			init_env.c \
+			$(UTILS)/my_revstr.c \
 			$(UTILS)/new_arg.c \
 
 SRC = main.c \
-	  env.c \
-	  redirect.c \
-	  format_arg.c \
-	  execute.c \
+	  pipe.c \
 	  $(SRC_FUNC) \
 	  $(SRC_UTILS) \
 	  $(SRC_HANDLER) \
@@ -42,27 +43,16 @@ SRC = main.c \
 OBJ = $(SRC:.c=.o)
 TARGET = 42sh
 
-all: $(TARGET)
-
 $(TARGET): $(OBJ)
-	make -C lib/my
 	$(CC) $^ -o $@ $(CPPFLAGS)
 
-run_tests: re
-	$(CC) -o unit_tests $(SRC_CRITERION) $(CPPFLAGS) -lcriterion --coverage
-	./unit_tests
+all: $(TARGET)
+	make clean
 
-clean_tests:
-	$(RM) unit_tests
-	$(RM) *.gcda
-	$(RM) *.gcno
-
-clean: clean_tests
-	make clean -C lib/my
+clean:
 	$(RM) $(OBJ)
 
 fclean: clean
-	make fclean -C lib/my
 	$(RM) $(TARGET)
 
 re: fclean all

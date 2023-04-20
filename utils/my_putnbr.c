@@ -5,7 +5,7 @@
 ** my_putnbr
 */
 
-#include "my.h"
+#include "shell.h"
 
 void my_putnbr(int nb)
 {
@@ -17,6 +17,6 @@ void my_putnbr(int nb)
         my_putchar(nb + '0');
     } else {
         my_putnbr(nb / 10);
-        my_putchar((nb % 10) + '0');
+        my_putchar(nb % 10);
     }
 }

@@ -44,7 +44,7 @@ char **remove_row(char **array, int row)
 {
     int i = 0;
     int j = 0;
-    char **new = malloc(sizeof(char *) * (my_2darray_len(array)));
+    char **new = malloc(sizeof(char *) * (array_len(array)));
 
     for (i = 0; array[i] != NULL; i++) {
         if (i != row) {
