@@ -7,8 +7,6 @@
 
 #include "shell.h"
 
-#include <string.h>
-
 char **env_fonc(int value, char **array)
 {
     static char **env = NULL;
@@ -33,7 +31,7 @@ int remove_env(char *name)
 {
     char **env = env_fonc(1, NULL);
     for (int i = 0; env[i] != NULL; i++) {
-        if (strncmp(env[i], name, strlen(name))) {
+        if (my_strncomp(env[i], name, my_strlen(name))) {
             env_fonc(0, remove_row(env, i));
             return 0;
         }
@@ -49,15 +47,15 @@ void add_env(char *name, char *value)
     char **new = malloc(sizeof(char *) * (array_len(array) + 3));
 
     for (i = 0; array[i] != NULL; i++) {
-        if (strncmp(array[i], name, strlen(name))) {
-            new[i] = strcat(strcat(name, "="), value);
+        if (my_strncomp(array[i], name, my_strlen(name))) {
+            new[i] = my_strcat(my_strcat(name, "="), value);
             enter = 1;
         } else {
         new[i] = array[i];
         }
     }
     if (enter == 0)
-        new[i] = strcat(my_strcat(name, "="), value);
+        new[i] = my_strcat(my_strcat(name, "="), value);
     new[i + 1] = NULL;
     env_fonc(0, new);
 }

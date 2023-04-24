@@ -6,7 +6,6 @@
 */
 
 #include "shell.h"
-#include <string.h>
 
 char *get_varenv(char *name)
 {
@@ -15,7 +14,7 @@ char *get_varenv(char *name)
     char *home = NULL;
 
     while (env[i] != NULL) {
-        if (strncmp(env[i], name, strlen(name))) {
+        if (my_strncomp(env[i], name, my_strlen(name))) {
             home = env[i];
             break;
         }
@@ -28,7 +27,7 @@ char *get_varenv(char *name)
 
 char *crop_b(char *str, int nb)
 {
-    char *new = malloc(sizeof(char) * (strlen(str) - nb + 1));
+    char *new = malloc(sizeof(char) * (my_strlen(str) - nb + 1));
     int j = 0;
 
     for (j = 0; str[nb] != '\0'; nb++, j++) {

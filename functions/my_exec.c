@@ -7,8 +7,6 @@
 
 #include "shell.h"
 
-#include <string.h>
-
 char *get_varenv(char *name);
 char *crop_b(char *str, int nb);
 
@@ -78,7 +76,7 @@ int my_exec(char **arg)
     char *path = NULL;
     (void) path;
     if (a == 0) {
-        if (!strncmp(arg[0], "./", 2))
+        if (!my_strncomp(arg[0], "./", 2))
             execve(test(arg[0]) , arg, get_env());
         ret = my_script(arg);
         exit(ret);
