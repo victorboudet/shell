@@ -24,7 +24,7 @@ int last_exec(char **arg)
 {
     int i = 0;
     for (i = 0; opt[i].name != NULL ; i++) {
-        if (my_str_comp(arg[0], opt[i].name)) {
+        if (strcmp(arg[0], opt[i].name)) {
             break;
         }
     }
@@ -63,7 +63,7 @@ format_t *format(char **str)
             ind++;
             continue;
         }
-        my_strcpy(f->dest[k][j], str[i]);
+        strcpy(f->dest[k][j], str[i]);
     }
     f->dest[k][j] = NULL;
     f->dest[k + 1] = NULL;
