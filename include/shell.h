@@ -104,4 +104,6 @@ void add_env(char *name, char *value);
 char **get_env(void);
 // void remove_env(int row);
 
+char *star(char *av);
+
 #endif /* !SHELL_H_ */
