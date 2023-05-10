@@ -87,8 +87,11 @@ char **supr_star(t_list *list, int nb, int j)
 
 char *in_str(t_list *list, char *str, int e)
 {
-    for (int i = 0; list->new[i] != NULL; i++)
+    for (int i = 0; list->new[i] != NULL; i++) {
         for (int j = 0; list->new[i][j] != 0; j++, e++)
             str[e] = list->new[i][j];
+        str[e] = ' ';
+        e++;
+    }
     return str;
 }

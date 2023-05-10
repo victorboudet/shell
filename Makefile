@@ -31,6 +31,7 @@ SRC_UTILS = $(UTILS)/my_puts.c \
 			$(UTILS)/my_strcat.c \
 			$(UTILS)/my_putnbr.c \
 			$(UTILS)/str_get.c \
+			$(UTILS)/my_strstr.c\
 			init_env.c \
 			$(UTILS)/my_revstr.c \
 			$(UTILS)/new_arg.c \
