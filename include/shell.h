@@ -73,6 +73,9 @@ char **my_str_to_word_array(char *str);
 char *my_strcat(char *first, char *second);
 int array_len(char **array);
 void my_strcpy(char *dest, const char *src);
+int my_strstr_start_end(char *str, char *to_find, char *to_find2);
+int my_strstr_start(char *str, char *to_find);
+int my_strstr_end(char *str, char *to_find);
 
 // env
 // env_t *init_env(char **env);

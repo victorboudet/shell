@@ -91,7 +91,6 @@ int check_line(char *line, int ret)
 {
     line = strtok(line, ";");
     while (line != NULL && line[0] != 10) {
-        line = star(line);
         ret = exec_command(line, ret);
         line = strtok(NULL, ";");
     }
