@@ -8,6 +8,7 @@
 FUNC = functions
 UTILS = utils
 HANDLER = handlers
+STAR = star
 
 CFLAGS = -W -Wall -Wextra -Werror
 CPPFLAGS = -I./include
@@ -37,11 +38,19 @@ SRC_UTILS = $(UTILS)/my_puts.c \
 			$(UTILS)/new_arg.c \
 			$(UTILS)/linked_list_to_array.c \
 
+SRC_STAR =  $(STAR)/clean_str.c\
+			$(STAR)/end_string.c\
+			$(STAR)/star_bis.c\
+			$(STAR)/star.c\
+			$(STAR)/str_compare.c\
+			$(STAR)/str_to_word_array.c\
+
 SRC = main.c \
 	  pipe.c \
 	  $(SRC_FUNC) \
 	  $(SRC_UTILS) \
 	  $(SRC_HANDLER) \
+	  $(SRC_STAR)\
 
 OBJ = $(SRC:.c=.o)
 TARGET = 42sh
