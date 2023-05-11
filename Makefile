@@ -9,7 +9,7 @@ FUNC = functions
 UTILS = utils
 HANDLER = handlers
 
-CFLAGS = -W -Wall -Wextra -Werror
+CFLAGS = -W -Wall -Wextra
 CPPFLAGS = -I./include
 
 SRC_FUNC = $(FUNC)/my_env.c \
@@ -33,9 +33,11 @@ SRC_UTILS = $(UTILS)/my_puts.c \
 			init_env.c \
 			$(UTILS)/my_revstr.c \
 			$(UTILS)/new_arg.c \
+			$(UTILS)/linked_list_to_array.c \
 
 SRC = main.c \
 	  pipe.c \
+	  clean_arg.c \
 	  $(SRC_FUNC) \
 	  $(SRC_UTILS) \
 	  $(SRC_HANDLER) \
