@@ -67,31 +67,50 @@ int double_array_len(char ***array)
     return i;
 }
 
-static int exec_command(char *line, int ret)
+char **strtoktok(char **array)
 {
-    char **arg = get_arg(line, ret);
+    static char **save = NULL;
+    if (array != NULL && save == NULL) {
+        save = array;
+        return NULL;
+    }
+    if (save == NULL)
+        return NULL;
+    int i = 0;
+    for (i = 0; save[i] != NULL && save[i][0] != -64; i++);
+    char **ret = calloc(i, sizeof(char **));
+    for (i = 0; save != NULL && save[0][0] != -64; i++) {
+        ret[i] = *save;
+        save++;
+    }
+    return save;
+}
+
+static int exec_command(char **arg, int ret)
+{
     int reto = 0;
     if (arg[0] == NULL) {
         return 0;
     }
-    format_t *f = format(arg);
-    if (f->dest[1] == NULL) {
-        return last_exec(arg);
-    }
-    pid_t pid = fork();
-    if (pid == 0) {
-        generic_pipe(f->dest, double_array_len(f->dest), f->tab);
-    } else {
-        wait(&reto);
+    strtoktok(arg);
+    char **tmp = NULL;
+    while ((tmp = strtoktok(NULL)) != NULL) {
+        pid_t pid = fork();
+        if (pid == 0) {
+            generic_pipe(tmp, double_array_len(tmp), f->tab);
+        } else {
+            wait(&reto);
+        }
     }
     return WEXITSTATUS(reto);
 }
 
 int check_line(char *line, int ret)
 {
+    char **arg = clean_arg(line);
     line = strtok(line, ";");
     while (line != NULL && line[0] != 10) {
-        ret = exec_command(line, ret);
+        ret = exec_command(arg, ret);
         line = strtok(NULL, ";");
     }
     return ret;
