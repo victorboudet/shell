@@ -31,40 +31,15 @@ char *supr(char *src, char del)
     return dest;
 }
 
-t_list *star_pos(t_list *list)
-{
-    int i = 0;
-
-    for (; list->path[i] != '\0'; i++)
-        if (list->path[i] == '*')
-            break;
-    if (i != 0 && list->path[i - 1] != '/' && list->path[i - 1] != ' ' && list->path[i + 1] == '\0')
-        list->pos = 1;
-    if (list->path[i + 1] != '/' && list->path[i + 1] != ' ' && list->path[i + 1] != '\n' && i != (int)strlen(list->path))
-        list->pos = 2;
-    if (list->pos == 2 && (i != 0 && list->path[i - 1] != '/' && list->path[i - 1] != ' '))
-        list->pos = 3;
-    if (list->pos == 0) 
-        list->pos = 4;
-    return list;  
-}
-
 t_list *loop_bis(t_list *list)
 {
-    list = star_pos(list);
     if (str_to_word_array(list->path, "*")[0] != NULL) {
         list->path = supr(str_to_word_array(list->path, "/")
         [tab_len(str_to_word_array(list->path, "/")) - 1], '*');
     }
     list->path = supr(list->path, '\0');
-    if (list->name != NULL && (strstr(list->name, list->path) != NULL || list->path[0] == '*')) {
-        printf("%i\n", list->pos);
-        if (list->pos == 1)
-            if (my_strstr_start(list->name, list->path) != 0)
-                return list;
-        if (list->pos == 2)
-            if (my_strstr_end(list->name, list->path) != 0)
-                return list;
+    if (list->name != NULL &&
+    (strstr(list->name, list->path) != NULL || list->path[0] == '*')) {
         list->y++;
         list->new = realloc(list->new, sizeof(char *) * (list->y + 1));
         if (list->name_dir[1] != '/')
