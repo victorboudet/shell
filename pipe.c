@@ -79,7 +79,7 @@ static int exec_command(char **arg, int ret)
         if (act(ret) && i) break;
         form_t *f = transform(tmp);
         if (f->cmd[1] == NULL) {
-            ret = last_exec(tmp);
+            (tmp[0][0] != '\0') ? ret = last_exec(tmp) : 1;
             continue;
         }
         pid_t pid = fork();
