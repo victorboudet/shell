@@ -9,6 +9,7 @@ FUNC = functions
 UTILS = utils
 HANDLER = handlers
 STAR = star
+ARG = arguments
 
 CFLAGS = -W -Wall -Wextra
 CPPFLAGS = -I./include
@@ -45,11 +46,13 @@ SRC_STAR =  $(STAR)/clean_str.c\
 			$(STAR)/str_compare.c\
 			$(STAR)/str_to_word_array.c\
 
+SRC_ARG = $(ARG)/clean_arg.c \
+		  $(ARG)/pipe.c \
+		  $(ARG)/transform.c \
+		  $(ARG)/pipeu.c \
+
 SRC = main.c \
-	  pipe.c \
-	  transform.c \
-	  clean_arg.c \
-	  pipeu.c \
+	  $(SRC_ARG) \
 	  $(SRC_FUNC) \
 	  $(SRC_UTILS) \
 	  $(SRC_HANDLER) \
