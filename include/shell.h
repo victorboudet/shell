@@ -35,6 +35,18 @@
 //     int size;
 // } env_t;
 
+typedef struct arg_s {
+    char *curr;
+    struct arg_s *next;
+} arg_t;
+typedef struct formats_s {
+    struct arg_s *first;
+    struct arg_s *curr;
+    char *line;
+    bool gs;
+    bool gd;
+} formats_t;
+
 typedef struct launch_s {
     char *name;
     int (*ptr)(char **);
@@ -73,6 +85,7 @@ char **my_str_to_word_array(char *str);
 char *my_strcat(char *first, char *second);
 int array_len(char **array);
 void my_strcpy(char *dest, const char *src);
+char **linked_list_to_array(arg_t *first);
 
 // env
 // env_t *init_env(char **env);
@@ -102,6 +115,7 @@ void init_env(char **env);
 int remove_env(char *name);
 void add_env(char *name, char *value);
 char **get_env(void);
+char **clean_arg(char *line);
 // void remove_env(int row);
 
 #endif /* !SHELL_H_ */
