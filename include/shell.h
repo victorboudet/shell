@@ -22,6 +22,12 @@
     #include <string.h>
     #include <errno.h>
 
+    #define ADD_ARG add_char(f, 0, false)
+    #define ADD_CHAR add_char(f, *f->line, true)
+    #define ADD_SEP(x) add_char(f, x, true)
+    #define MAIN_SEP -64
+    #define SUB_SEP -65
+
 // typedef struct list_s list_t;
 // struct list_s {
 //     char *name;
@@ -56,6 +62,17 @@ typedef struct error_s {
     int code;
     char *msg;
 } error_t;
+
+typedef struct tabe_s{
+    char *name;
+    int value;
+} tabe_t;
+
+typedef struct form_s {
+    char ***cmd;
+    int *sep;
+    int ns;
+} form_t;
 
 typedef struct parse_s {
     int i;
@@ -101,6 +118,7 @@ int my_cd(char **arg);
 int my_exec(char **arg);
 int my_setenv(char **arg);
 int my_unsetenv(char **arg);
+void generic_pipe(char **commands[], int num_commands, int *tab);
 
 // signals
 pid_t process(pid_t pid, bool act);
@@ -114,6 +132,7 @@ char **remove_row(char **array, int row);
 void print_env(void);
 
 char **env_fonc(int value, char **array);
+form_t *transform(char **input);
 void init_env(char **env);
 int remove_env(char *name);
 void add_env(char *name, char *value);
