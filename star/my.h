@@ -26,6 +26,7 @@
         int i;
         int j;
         char *name;
+        int pos;
         char *name_dir;
         char *path;
         char **commande;
