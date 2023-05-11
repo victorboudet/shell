@@ -10,7 +10,7 @@ UTILS = utils
 HANDLER = handlers
 STAR = star
 
-CFLAGS = -W -Wall -Wextra -Werror
+CFLAGS = -W -Wall -Wextra
 CPPFLAGS = -I./include
 
 SRC_FUNC = $(FUNC)/my_env.c \
@@ -47,6 +47,9 @@ SRC_STAR =  $(STAR)/clean_str.c\
 
 SRC = main.c \
 	  pipe.c \
+	  transform.c \
+	  clean_arg.c \
+	  pipeu.c \
 	  $(SRC_FUNC) \
 	  $(SRC_UTILS) \
 	  $(SRC_HANDLER) \
