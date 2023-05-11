@@ -46,30 +46,6 @@ int check_sep(char *str)
     return 0;
 }
 
-format_t *format(char **str)
-{
-    int k = 0, i = 0, j = 0, ind = 0;
-    format_t *f = malloc(sizeof(format_t));
-    f->tab = malloc(sizeof(int) * (array_len(str) + 1));
-    f->dest = malloc(sizeof(char **) * (array_len(str) + 1));
-    for (int j = 0; j <= array_len(str); j++)
-        f->dest[j] = malloc_2d(array_len(str)*100, my_strlen(str[j])*100);
-    f->dest[array_len(str)] = NULL;
-    for (i = 0; str[i] != NULL; j++, i++) {
-        if ((f->tab[ind] = check_sep(str[i]))) {
-            f->dest[k][j] = NULL;
-            k++;
-            j = -1;
-            ind++;
-            continue;
-        }
-        my_strcpy(f->dest[k][j], str[i]);
-    }
-    f->dest[k][j] = NULL;
-    f->dest[k + 1] = NULL;
-    return f;
-}
-
 int mysh(void)
 {
     char *line = NULL;
@@ -77,10 +53,9 @@ int mysh(void)
     int status = 1;
     set_signal();
     int ret = 0;
-
     while (status) {
         if (isatty(0))
-            my_putstr("$> ");
+            printf("$> ");
         getline(&line, &lline, stdin);
         if (line[0] == 0 || line == NULL || (line[0] == '\n' && !isatty(0)))
             break;
