@@ -86,6 +86,9 @@ char *my_strcat(char *first, char *second);
 int array_len(char **array);
 void my_strcpy(char *dest, const char *src);
 char **linked_list_to_array(arg_t *first);
+int my_strstr_start_end(char *str, char *to_find, char *to_find2);
+int my_strstr_start(char *str, char *to_find);
+int my_strstr_end(char *str, char *to_find);
 
 // env
 // env_t *init_env(char **env);
@@ -117,5 +120,7 @@ void add_env(char *name, char *value);
 char **get_env(void);
 char **clean_arg(char *line);
 // void remove_env(int row);
+
+char *star(char *av);
 
 #endif /* !SHELL_H_ */
