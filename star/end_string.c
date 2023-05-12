@@ -10,7 +10,9 @@
 char *end_string(char *buffer)
 {
     for (int i = 0; i != my_strlen(buffer); i++)
-        if (buffer[i] == '\n')
+        if (buffer[i] == '\n') {
             buffer[i] = 0;
+            break;
+        }
     return buffer;
 }

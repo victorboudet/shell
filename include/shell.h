@@ -106,6 +106,7 @@ char **linked_list_to_array(arg_t *first);
 int my_strstr_start_end(char *str, char *to_find, char *to_find2);
 int my_strstr_start(char *str, char *to_find);
 int my_strstr_end(char *str, char *to_find);
+char *clean_str(char *str);
 
 // env
 // env_t *init_env(char **env);
