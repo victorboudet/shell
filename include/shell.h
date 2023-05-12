@@ -142,5 +142,6 @@ char **clean_arg(char *line);
 // void remove_env(int row);
 
 char *star(char *av);
+void print_tty(void);
 
 #endif /* !SHELL_H_ */

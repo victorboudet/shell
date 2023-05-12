@@ -15,6 +15,7 @@ void sigint_handler(int sig)
         kill(process(0, 0), SIGINT);
         my_putchar('\n');
     } else {
-        my_putstr("\n$> ");
+        printf("\n");
+        print_tty();
     }
 }
