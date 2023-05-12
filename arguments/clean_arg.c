@@ -103,5 +103,6 @@ char **clean_arg(char *line)
         }
         ADD_CHAR;
     }
+    if (!my_strlen(f->curr->curr)) f->curr->curr = NULL;
     return linked_list_to_array(f->first);
 }
