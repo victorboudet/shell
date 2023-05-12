@@ -1,0 +1,10 @@
+./42sh:1: MAJOR:C-O1
+./lib/my/disp/my_print_3darray.o:1: MAJOR:C-O1
+./lib/my/disp/my_print_array.o:1: MAJOR:C-O1
+./lib/my/disp/my_putchar.o:1: MAJOR:C-O1
+./lib/my/disp/my_putnbr.o:1: MAJOR:C-O1
+./lib/my/disp/my_putstr.o:1: MAJOR:C-O1
+./lib/my/len/my_2darray_len.o:1: MAJOR:C-O1
+./lib/my/len/my_3darray_len.o:1: MAJOR:C-O1
+./lib/my/len/my_strlen.o:1: MAJOR:C-O1
+./lib/my/malloc/malloc_2d_char.o:1: MAJOR:C-O1

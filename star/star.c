@@ -89,5 +89,5 @@ char *star(char *av)
         str[e] = ' ';
         e++;
     }
-    return str;
+    str = clean_str(str); return str;
 }

@@ -94,6 +94,9 @@ static int exec_command(char **arg, int ret)
 
 int check_line(char *line, int ret)
 {
+    line = star(line);
+    line = clean_str(line);
+    line = strcat(line, "\n");
     char **arg = clean_arg(line);
     ret = exec_command(arg, ret);
     return ret;
