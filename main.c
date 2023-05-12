@@ -55,7 +55,7 @@ int mysh(void)
     int ret = 0;
     while (status) {
         if (isatty(0))
-            printf("$> ");
+            print_tty();
         getline(&line, &lline, stdin);
         if (line[0] == 0 || line == NULL || (line[0] == '\n' && !isatty(0)))
             break;

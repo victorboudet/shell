@@ -38,6 +38,7 @@ SRC_UTILS = $(UTILS)/my_puts.c \
 			$(UTILS)/my_revstr.c \
 			$(UTILS)/new_arg.c \
 			$(UTILS)/linked_list_to_array.c \
+			$(UTILS)/print_tty.c \
 
 SRC_STAR =  $(STAR)/clean_str.c\
 			$(STAR)/end_string.c\
