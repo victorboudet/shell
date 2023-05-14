@@ -51,20 +51,20 @@ int my_script(char **arg)
     pid_t pid = 0;
     pid = fork();
     if (pid == 0) {
-        arg[0] != NULL ? execve(arg[0], arg, NULL) : TAMER;
-        my_putstr(arg[0]);
+        if (arg[0] == NULL) { my_putstr("Invalid null command.\n"); return 1;
+        }
+        execve(arg[0], arg, NULL); my_putstr(arg[0]);
         if (errno == 13) my_putstr(": Permission denied.\n");
         if (errno == 8)
             my_putstr(": Exec format error. Wrong Architecture.\n");
         if (errno != 8 && errno != 13) my_putstr(": Command not found.\n");
         exit(1);
-    } else {
-        wait(&ret);
+    } else { wait(&ret);
         if (WIFSIGNALED(ret)) my_putstr(strsignal(WTERMSIG(ret)));
         if (WCOREDUMP(ret)) my_putstr(" (core dumped)");
         if (WIFEXITED(ret)) ret = WEXITSTATUS(ret);
         else
-            my_putchar('\n');
+        my_putchar('\n');
     }
     return ret;
 }
