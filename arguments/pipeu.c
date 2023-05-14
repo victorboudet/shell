@@ -15,25 +15,23 @@
 // <    3
 // <<   4
 // |    5
-// ||   6
-// &&   7
-// ;    8
 static void action(int nb, char **commands[], int i)
 {
-    return;
     int out_fd;
     switch (nb) {
+        case 1:
+            out_fd = open(commands[i + 1][0], O_WRONLY | O_CREAT | O_TRUNC,
+                0644);
+            dup2(out_fd, STDOUT_FILENO);
+            close(out_fd);
+            break;
         case 2:
             out_fd = open(commands[i + 1][0], O_WRONLY | O_CREAT | O_APPEND,
                 0644);
             dup2(out_fd, STDOUT_FILENO);
             close(out_fd);
             break;
-        case 4:
-            out_fd = open(commands[i + 1][0], O_WRONLY | O_CREAT | O_TRUNC,
-                0644);
-            dup2(out_fd, STDOUT_FILENO);
-            close(out_fd);
+        default:
             break;
     }
 }
