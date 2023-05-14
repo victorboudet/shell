@@ -51,7 +51,7 @@ int my_script(char **arg)
     pid_t pid = 0;
     pid = fork();
     if (pid == 0) {
-        execve(arg[0], arg, NULL);
+        arg[0] != NULL ? execve(arg[0], arg, NULL) : TAMER;
         my_putstr(arg[0]);
         if (errno == 13) my_putstr(": Permission denied.\n");
         if (errno == 8)
