@@ -9,6 +9,7 @@
 
 char *get_varenv(char *name);
 char *crop_b(char *str, int nb);
+void sep(char *str, char *stre);
 
 const error_t err[] = {
     {139, "Segmentation fault (core dumped)"},
@@ -48,16 +49,16 @@ char *test(char *arg)
 int my_script(char **arg)
 {
     int ret = 0;
-    pid_t pid = 0;
-    pid = fork();
+    pid_t pid = fork();
     if (pid == 0) {
         if (arg[0] == NULL) { my_putstr("Invalid null command.\n"); return 1;
         }
-        execve(arg[0], arg, NULL); my_putstr(arg[0]);
-        if (errno == 13) my_putstr(": Permission denied.\n");
-        if (errno == 8)
-            my_putstr(": Exec format error. Wrong Architecture.\n");
-        if (errno != 8 && errno != 13) my_putstr(": Command not found.\n");
+        execve(arg[0], arg, NULL);
+        if (access(arg[0], F_OK) == -1 && errno == 13)
+            sep(arg[0], "Permission denied.");
+        if (errno == 8) sep(arg[0], "Exec format error. Wrong Architecture.");
+        if (errno != 8 && access(arg[0], F_OK) != -1 && errno != 13)
+            sep(arg[0], "Command not found.");
         exit(1);
     } else { wait(&ret);
         if (WIFSIGNALED(ret)) my_putstr(strsignal(WTERMSIG(ret)));

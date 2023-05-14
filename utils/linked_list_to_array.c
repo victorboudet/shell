@@ -21,3 +21,11 @@ char **linked_list_to_array(arg_t *first)
     }
     return ret;
 }
+
+void sep(char *str, char *stre)
+{
+    my_putstr(str);
+    my_putstr(": ");
+    my_putstr(stre);
+    my_putchar('\n');
+}

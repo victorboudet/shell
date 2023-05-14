@@ -24,16 +24,19 @@ static void action(int nb, char **commands[], int i)
                 0644);
             dup2(out_fd, STDOUT_FILENO);
             close(out_fd);
-            break;
+            return;
         case 2:
             out_fd = open(commands[i + 1][0], O_WRONLY | O_CREAT | O_APPEND,
                 0644);
             dup2(out_fd, STDOUT_FILENO);
             close(out_fd);
-            break;
+            return;
+        case 5:
+            return;
         default:
             break;
     }
+    exit(0);
 }
 
 void generic_pipe(char **commands[], int num_commands, int *tab)
