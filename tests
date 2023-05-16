@@ -1,0 +1,294 @@
+[901]
+NAME="Nothing"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo ''
+[901-END]
+
+[902]
+NAME="Exec two command"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'ls /etc'
+  echo 'cat /etc/resolv.conf'
+[902-END]
+
+[903]
+NAME="Testing with /usr/bin PATH"
+SETUP="export TERM=xterm ; PATH='/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'pwd'
+[903-END]
+
+[904]
+NAME="Testing with /bin PATH"
+SETUP="export TERM=xterm ; PATH='/bin'"
+CLEAN=""
+TESTS=
+  echo 'pwd'
+[904-END]
+
+[905]
+NAME="run commands"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'cat /etc/resolv.conf'
+  sleep 0.5
+  echo 'ls -l /etc'
+  sleep 0.5
+  echo 'pwd'
+[905-END]
+
+[906]
+NAME="setenv and unsetenv"
+SETUP="/usr/bin/env > .lstenv ; while read varenv ; do unset $varenv ; done < <(/bin/cat .lstenv | /usr/bin/cut -f1 -d=) ; export PATH=/bin:/usr/bin ; export _=ls ; export LS_COLORS=RID ; export MYBG=4 ; export LVL=4 ; export NOTE=2"
+CLEAN="while read varenv ; do export "$varenv" 2>/dev/null ; done  < <(/bin/cat .lstenv) ; /bin/rm -f .lstenv"
+TESTS=
+  echo 'unsetenv HOSTTYPE'
+  echo 'unsetenv VENDOR'
+  echo 'unsetenv OSTYPE'
+  echo 'unsetenv MACHTYPE'
+  echo 'unsetenv SHLVL'
+  echo 'unsetenv PWD'
+  echo 'unsetenv LOGNAME'
+  echo 'unsetenv USER'
+  echo 'unsetenv GROUP'
+  echo 'unsetenv HOST'
+  echo 'unsetenv REMOTEHOST'
+  echo 'unsetenv _'
+  echo 'unsetenv LS_COLORS'
+  echo 'unsetenv NOTE'
+  echo 'setenv titi'
+  echo 'setenv tata coucou'
+  echo 'env'
+  echo '/usr/bin/env'
+  echo 'setenv var1 val1'
+  echo 'setenv var2 val2'
+[906-END]
+
+[907]
+NAME="builtin cd"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'cd ..'
+  echo 'ls -l'
+  echo 'cd /usr'
+  echo 'ls -l'
+[907-END]
+
+[908]
+NAME="many tab and space"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo -e "\t\t    ls\t     \t-l    \t\t  \t -a /usr   \t\t"
+[908-END]
+
+[910]
+NAME="cd -"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'cd ..'
+  echo 'cd -'
+[910-END]
+
+[912]
+NAME="hard format"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo -e '\t  \t \t    ls'
+  echo -e '\t    \t \t\t\t\t\t    ls -a \t -l'
+  echo -e '\t'
+  echo -e ' \tls'
+  echo -e '\tls\t-l\t'
+  echo -e '\t cd     ..\t\n\t\t ls     \t\t -l'
+[912-END]
+
+[913]
+NAME="echo in shell"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'echo hello world'
+[913-END]
+
+[914]
+NAME="unsetenv many times in a row"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'unsetenv _ SHELL TERM LS_COLORS'
+[914-END]
+
+[915]
+NAME="cd in shell"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'cd'
+  echo 'cd /'
+  echo 'cd /usr'
+  echo 'cd /usr/bin'
+  echo 'cd /usr/bin/../..'
+  echo 'cd -'
+[915-END]
+
+[916]
+NAME="fusion of tests"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'unsetenv HOSTTYPE'
+  echo 'unsetenv VENDOR'
+  echo 'unsetenv OSTYPE'
+  echo 'unsetenv MACHTYPE'
+  echo 'unsetenv SHLVL'
+  echo 'unsetenv PWD'
+  echo 'unsetenv LOGNAME'
+  echo 'ls -l'
+  echo 'cd ..'
+  echo 'ls -l'
+  echo 'cd -'
+  echo 'echo hello world'
+  echo 'cd /'
+  echo 'cd -'
+  echo 'unsetenv USER'
+  echo 'unsetenv GROUP'
+  echo 'unsetenv HOST'
+  echo 'unsetenv REMOTEHOST'
+  echo 'unsetenv _'
+  echo 'setenv _'
+  echo 'ls'
+  echo 'unsetenv _'
+  echo 'unsetenv LS_COLORS'
+  echo 'unsetenv NOTE'
+  echo 'setenv titi'
+  echo 'setenv tata coucou'
+  echo 'cd /'
+  echo 'cd -'
+  echo 'cd -'
+  echo -e 'setenv \tABC\t \tLYS\t'
+  echo 'unsetenv ABC not_exist'
+[916-END]
+
+[917]
+NAME="ls in different directories"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'ls'
+  echo 'cd ..'
+  echo 'ls'
+  echo 'cd -'
+  echo 'ls'
+  echo 'cd /'
+  echo 'ls'
+  echo 'cd -'
+  echo 'ls'
+  echo 'cd /usr'
+  echo 'ls'
+[917-END]
+
+[918]
+NAME="cat in shell"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'cat /etc/passwd'
+  echo 'cat ls'
+  echo 'cat /bin/ls'
+  echo 'cat /usr/bin/ls'
+  echo 'cat ../'
+[918-END]
+
+[919]
+NAME="date in shell"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'date'
+[919-END]
+
+[920]
+NAME="pwd in shell"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'pwd'
+[920-END]
+
+[921]
+NAME="diff in shell"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'diff /etc/passwd /etc/passwd'
+[921-END]
+
+[998]
+NAME="special characters 6"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'touch ���'
+  echo 'rm ���'
+[998-END]
+
+[999]
+NAME="special characters 7"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'touch 🤣😀'
+  echo 'rm 🤣😀'
+[999-END]
+
+[1000]
+NAME="special characters 8"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'echo ���'
+  echo 'echo ���'
+  echo 'echo ���'
+[1000-END]
+
+[1001]
+NAME="no character"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo ''
+[1001-END]
+
+[1002]
+NAME="no character 2"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo ' '
+[1002-END]
+
+[1003]
+NAME="no character 3"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo -ne ''
+[1003-END]
+
+[1004]
+NAME="no character 4"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo -ne ''
+  echo -ne 'ls'
+[1004-END]
