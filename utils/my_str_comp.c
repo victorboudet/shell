@@ -9,6 +9,9 @@
 
 int my_strncomp(const char *str1, const char *str2, int n)
 {
+    if (str1 == NULL || str2 == NULL) {
+        return 1;
+    }
     for (int i = 0; str1[i] && str2[i] && i < n; i++) {
         if (str1[i] != str2[i])
                 return 0;

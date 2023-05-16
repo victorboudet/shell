@@ -81,6 +81,7 @@ typedef struct parse_s {
     char **dest;
     char *str;
 } parse_t;
+    #define TAMER my_putstr("Invalid null command.\n"); exit(1)
 
 typedef struct format_s {
     char ***dest;
